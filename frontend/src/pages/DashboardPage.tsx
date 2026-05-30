@@ -16,7 +16,8 @@ import CreateSessionModal from "../component/CreateSessionModal";
 import RecentSessions from "../component/RecentSessions";
 import StatsCards from "../component/StatsCards";
 import WelcomeSection from "../component/WelcomeSection";
-import { Footer } from "../component/Footer";
+import Footer from "../component/Footer";
+
 
 function DashboardPage() {
   const navigate = useNavigate();
