@@ -15,7 +15,7 @@ import {
 import { PROBLEMS } from "../data/problems";
 import Navbar from "../component/navbar";
 import type { Problem } from "../component/ProblemDescription";
-import { Footer } from "../component/Footer";
+import Footer from "../component/Footer";
 
 const ProblemsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
