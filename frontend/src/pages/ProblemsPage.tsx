@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
-import { 
-  ChevronRight, 
-  Terminal, 
-  Zap, 
-  Brain, 
-  Flame, 
+import {
+  ChevronRight,
+  Terminal,
+  Zap,
+  Brain,
+  Flame,
   Search,
   LayoutGrid,
   X
@@ -15,7 +15,7 @@ import {
 import { PROBLEMS } from "../data/problems";
 import Navbar from "../component/navbar";
 import type { Problem } from "../component/ProblemDescription";
-import Foot from "../component/Footer";
+import Foot from "../component/foot";
 
 const ProblemsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -65,15 +65,15 @@ const ProblemsPage: React.FC = () => {
             {/* THE WORKABLE SEARCH */}
             <div className="relative group min-w-[320px]">
               <Search className={`absolute left-4 top-1/2 -translate-y-1/2 size-4 transition-colors ${searchQuery ? 'text-cyan-400' : 'text-stone-500'}`} />
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Find a problem or category..." 
+                placeholder="Find a problem or category..."
                 className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-11 pr-10 text-sm font-mono focus:outline-none focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/20 transition-all placeholder:text-stone-600"
               />
               {searchQuery && (
-                <button 
+                <button
                   onClick={() => setSearchQuery("")}
                   className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-white/10 rounded-md transition-colors"
                 >
@@ -94,8 +94,8 @@ const ProblemsPage: React.FC = () => {
           ].map((s, i) => (
             <div key={i} className="bg-white/4 border border-white/10 rounded-2xl p-5 group transition-all hover:bg-white/6">
               <div className="flex items-center justify-between mb-2">
-                 <s.icon className={`size-4 ${s.color} opacity-60`} />
-                 <span className="font-mono text-[9px] uppercase tracking-widest text-stone-500">{s.label}</span>
+                <s.icon className={`size-4 ${s.color} opacity-60`} />
+                <span className="font-mono text-[9px] uppercase tracking-widest text-stone-500">{s.label}</span>
               </div>
               <p className="text-3xl font-semibold tracking-tight">{s.val}</p>
             </div>
@@ -126,7 +126,7 @@ const ProblemsPage: React.FC = () => {
                         </span>
                       </div>
                       <div className="flex items-center gap-4 text-xs font-mono text-stone-500">
-                         <span className="flex items-center gap-1.5"><Terminal size={12} className="text-cyan-400" /> {problem.category}</span>
+                        <span className="flex items-center gap-1.5"><Terminal size={12} className="text-cyan-400" /> {problem.category}</span>
                       </div>
                     </div>
                   </div>
@@ -139,7 +139,7 @@ const ProblemsPage: React.FC = () => {
           ) : (
             <div className="py-20 text-center border border-dashed border-white/10 rounded-3xl">
               <p className="font-mono text-stone-500 text-sm">No results found for "{searchQuery}"</p>
-              <button 
+              <button
                 onClick={() => setSearchQuery("")}
                 className="mt-4 text-xs font-bold text-cyan-400 hover:underline"
               >
@@ -149,7 +149,7 @@ const ProblemsPage: React.FC = () => {
           )}
         </div>
       </main>
-      <Foot/>
+      <Foot />
     </div>
   );
 };

@@ -16,7 +16,7 @@ import CreateSessionModal from "../component/CreateSessionModal";
 import RecentSessions from "../component/RecentSessions";
 import StatsCards from "../component/StatsCards";
 import WelcomeSection from "../component/WelcomeSection";
-import Foot from "../component/Footer";
+import Foot from "../component/foot";
 
 
 function DashboardPage() {

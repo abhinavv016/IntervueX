@@ -18,10 +18,10 @@ import {
   Zap,
 } from "lucide-react";
 import { SignInButton } from "@clerk/clerk-react";
-import Foot from "../component/Footer";
+import Foot from "../component/foot";
 
 // Types
-interface SnippetLine { 
+interface SnippetLine {
   t: string;
   c: "muted" | "fn" | "code" | "ok";
 }
@@ -56,31 +56,31 @@ function TypingCode() {
   const [lineIdx, setLineIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
 
-useEffect(() => {
-  if (lineIdx >= full.length) return;
-  const current = full[lineIdx].t;
-  
-  if (charIdx < current.length) {
-  
-    const id = window.setTimeout(() => setCharIdx((v) => v + 1), 18);
+  useEffect(() => {
+    if (lineIdx >= full.length) return;
+    const current = full[lineIdx].t;
+
+    if (charIdx < current.length) {
+
+      const id = window.setTimeout(() => setCharIdx((v) => v + 1), 18);
+      return () => window.clearTimeout(id);
+    }
+
+    const id = window.setTimeout(() => {
+      setLineIdx((v) => v + 1);
+      setCharIdx(0);
+    }, 220);
+
     return () => window.clearTimeout(id);
-  }
-  
-  const id = window.setTimeout(() => {
-    setLineIdx((v) => v + 1);
-    setCharIdx(0);
-  }, 220);
-  
-  return () => window.clearTimeout(id);
-}, [charIdx, lineIdx, full]);
+  }, [charIdx, lineIdx, full]);
 
   const colorOf = (c: SnippetLine["c"]) =>
-    ({
-      muted: "text-stone-500",
-      fn: "text-cyan-400",
-      code: "text-stone-200",
-      ok: "text-emerald-300",
-    }[c] || "text-stone-200");
+  ({
+    muted: "text-stone-500",
+    fn: "text-cyan-400",
+    code: "text-stone-200",
+    ok: "text-emerald-300",
+  }[c] || "text-stone-200");
 
   return (
     <div className="relative rounded-2xl border border-white/10 bg-[#0d110d]/90 backdrop-blur-xl shadow-[0_30px_80px_-20px_rgba(34,211,238,0.25)] overflow-hidden">
@@ -313,8 +313,10 @@ export default function HomePage() {
             {[
               { k: "step.01", t: "Schedule your Mock", d: "One click to the lobby. Unlimited mock sessions.", icon: GitBranch },
               { k: "step.02", t: "Run the interview", d: "Pick a problem set — DSA and go live.", icon: Terminal },
-              { k: "step.03", t: "Review & Refine", d: "Turn every session into a clear roadmap for improvement.",
-  icon: Zap, },
+              {
+                k: "step.03", t: "Review & Refine", d: "Turn every session into a clear roadmap for improvement.",
+                icon: Zap,
+              },
             ].map((s) => (
               <div key={s.k} className="bg-[#0a0d0a] p-8 hover:bg-[#0d110d] transition-colors group">
                 <div className="flex items-center justify-between mb-10">
