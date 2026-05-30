@@ -16,7 +16,7 @@ import CreateSessionModal from "../component/CreateSessionModal";
 import RecentSessions from "../component/RecentSessions";
 import StatsCards from "../component/StatsCards";
 import WelcomeSection from "../component/WelcomeSection";
-import Footer from "../component/Footer";
+import Foot from "../component/Footer";
 
 
 function DashboardPage() {
@@ -124,7 +124,7 @@ function DashboardPage() {
       <div className="max-w-7xl mx-auto w-full px-6 opacity-20">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-stone-500 to-transparent" />
       </div>
-      <Footer />
+      <Foot />
 
       {/* MODAL OVERLAY */}
       <CreateSessionModal
