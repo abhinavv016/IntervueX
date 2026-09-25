@@ -10,10 +10,23 @@ import sessionRoutes from "./routes/sessionRoutes";
 
 const app = express();
 
-app.use(express.json())
+const allowedOrigins = [
+  ENV.CLIENT_URL,
+  ENV.CLIENT_URL?.replace(/\/$/, ""),
+].filter(Boolean) as string[];
+
+app.use(express.json());
 app.use(cors({
-  origin: ENV.CLIENT_URL,
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.length === 0 || allowedOrigins.includes(origin) || origin.startsWith("http://localhost:")) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
   credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 }));
 app.use(clerkMiddleware())
 app.use("/api/chat",chatRoutes)

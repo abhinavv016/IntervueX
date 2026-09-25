@@ -22,6 +22,10 @@ export const protectRoute = [
       const { userId: clerkId } = getAuth(req);
 
       if (!clerkId) {
+        console.warn(
+          "[protectRoute] 401 Unauthorized - No clerkId found. Authorization header:",
+          req.headers.authorization ? "Present" : "Missing"
+        );
         res.status(401).json({ message: "Unauthorized - invalid token" });
         return;
       }
@@ -31,6 +35,7 @@ export const protectRoute = [
       });
 
       if (!user) {
+        console.warn(`[protectRoute] 404 Not Found - User with clerkId "${clerkId}" does not exist in database`);
         res.status(404).json({ message: "User not found" });
         return;
       }
