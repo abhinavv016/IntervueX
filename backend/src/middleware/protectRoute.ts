@@ -3,6 +3,8 @@ import { Request, Response, NextFunction } from "express";
 import prisma from "../lib/prisma";
 
 export interface AuthRequest extends Request {
+  [key: string]: any;
+  headers: any;
   body: any;
   params: any;
   user: {
@@ -24,7 +26,7 @@ export const protectRoute = [
       if (!clerkId) {
         console.warn(
           "[protectRoute] 401 Unauthorized - No clerkId found. Authorization header:",
-          req.headers.authorization ? "Present" : "Missing"
+          (req as any).headers?.authorization ? "Present" : "Missing"
         );
         res.status(401).json({ message: "Unauthorized - invalid token" });
         return;
